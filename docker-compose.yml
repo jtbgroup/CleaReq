@@ -1,0 +1,68 @@
+services:
+  # Application (Backend + Frontend + Nginx)
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cleareq-app
+    ports:
+      - "8090:8090"
+    environment:
+      SERVER_PORT: 8090
+      
+      # PostgreSQL config
+      DB_HOST: ${DB_HOST:-postgres}
+      DB_PORT: ${DB_PORT:-5432}
+      DB_NAME: ${DB_NAME:-cleareq}
+      DB_USER: ${DB_USER:-cleareq}
+      DB_PASSWORD: ${DB_PASSWORD:-cleareq}
+      
+      # JVM tuning
+      JAVA_OPTS: "-Xmx1024m -Xms512m"
+    
+    depends_on:
+      - postgres:
+          condition: service_healthy
+          required: false  
+          
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8090/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    
+    restart: unless-stopped
+    networks:
+      - cleareq-network
+
+  # PostgreSQL
+  postgres:
+    image: postgres:17-alpine
+    container_name: cleareq-postgres
+    environment:
+      POSTGRES_DB: ${DB_NAME:-cleareq}
+      POSTGRES_USER: ${DB_USER:-cleareq}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-cleareq}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-cleareq}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - cleareq-network
+    profiles:
+      - postgres
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  cleareq-network:
+    driver: bridge

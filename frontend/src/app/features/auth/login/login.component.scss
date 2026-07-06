@@ -1,0 +1,71 @@
+@use 'styles/variables' as *;
+
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $color-bg-alt;
+}
+
+.login-card {
+  background: $color-bg-white;
+  border-radius: $border-radius-lg;
+  padding: 48px 40px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 36px;
+
+  .logo-mark {
+    width: 48px;
+    height: 48px;
+    background: $color-brand-light;
+    border-radius: $border-radius-md;
+    margin: 0 auto 16px;
+  }
+
+  h1 {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    margin: 0 0 4px;
+    color: $color-text-alt;
+  }
+
+  .subtitle {
+    color: $color-text-muted;
+    margin: 0;
+    font-size: 0.95rem;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+mat-form-field {
+  margin-bottom: 8px;
+}
+
+.error-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: $color-error-bg;
+  color: $color-danger-text;
+  border-radius: $border-radius-md;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  font-size: $font-size-sm;
+
+  mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+}
+

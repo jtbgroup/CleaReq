@@ -1,0 +1,60 @@
+services:
+  cleareq-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      network: host
+      args:
+        HTTP_PROXY: ${HTTP_PROXY:-}
+        HTTPS_PROXY: ${HTTPS_PROXY:-}
+        MAVEN_PROXY_HOST: ${MAVEN_PROXY_HOST:-}
+        MAVEN_PROXY_PORT: ${MAVEN_PROXY_PORT:-}
+        INSECURE_SSL: ${INSECURE_SSL:-}
+    image: cleareq-app
+    container_name: cleareq-dev
+    env_file:
+      - .env
+    network_mode: host
+#    ports:
+#      - "8080:8080"   # Nginx reverse proxy (frontend + backend)
+#      - "4200:4200"   # Angular dev server (direct access)
+#      - "8081:8081"   # Spring Boot (direct access)
+#      - "5005:5005"   # Remote debugging
+    volumes:
+      - ./backend:/app/backend
+      - ./frontend:/app/frontend
+      - maven_cache:/root/.m2
+      - node_modules:/app/frontend/node_modules
+    environment:
+      SERVER_PORT: 8081
+      NODE_ENV: dev
+      MAVEN_OPTS: "-Xmx512m -Dhttps.proxyHost=${MAVEN_PROXY_HOST:-} -Dhttps.proxyPort=${MAVEN_PROXY_PORT:-} -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dmaven.wagon.http.ssl.ignore.validity.dates=true"
+      JAVA_OPTS: "-Xmx512m -Xms256m -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+  
+  postgres-dev:
+    image: postgres:16-alpine
+    container_name: postgres-dev
+    environment:
+      POSTGRES_USER: ${DB_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      POSTGRES_DB: ${DB_NAME:-cleareq_db}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME:-postgres} -d ${DB_NAME:-cleareq_db}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  maven_cache:
+  node_modules:
+  postgres_data:

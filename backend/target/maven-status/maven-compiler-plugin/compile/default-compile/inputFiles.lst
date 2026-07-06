@@ -1,0 +1,16 @@
+/app/backend/src/main/java/com/cleareq/CleaReqApplication.java
+/app/backend/src/main/java/com/cleareq/controller/AuthController.java
+/app/backend/src/main/java/com/cleareq/controller/UserManagementController.java
+/app/backend/src/main/java/com/cleareq/controller/VersionController.java
+/app/backend/src/main/java/com/cleareq/dto/AuthDtos.java
+/app/backend/src/main/java/com/cleareq/dto/UserDtos.java
+/app/backend/src/main/java/com/cleareq/entity/AppUser.java
+/app/backend/src/main/java/com/cleareq/entity/UserAudit.java
+/app/backend/src/main/java/com/cleareq/repository/AppUserRepository.java
+/app/backend/src/main/java/com/cleareq/repository/UserAuditRepository.java
+/app/backend/src/main/java/com/cleareq/security/AppUserDetailsService.java
+/app/backend/src/main/java/com/cleareq/security/SecurityConfig.java
+/app/backend/src/main/java/com/cleareq/security/SessionCleanupListener.java
+/app/backend/src/main/java/com/cleareq/security/SessionRegistrationFilter.java
+/app/backend/src/main/java/com/cleareq/security/SessionRegistry.java
+/app/backend/src/main/java/com/cleareq/service/UserManagementService.java

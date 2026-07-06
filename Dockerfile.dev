@@ -1,0 +1,95 @@
+# ============================================
+# Development Dockerfile with H2
+# Features:
+# - H2 in-memory database
+# - Maven hot reload
+# - Remote debugging (port 5005)
+# - Node.js for Angular build watch
+# - Nginx for routing
+# - 100% optional proxy configuration (via build args, empty by default)
+# ============================================
+FROM maven:3.9.6-eclipse-temurin-21-alpine
+
+# ── Proxy (optional) ──────────────────────────────────────────────────────
+# Left empty by default: the build works as-is on any machine without a proxy.
+# Filled only via docker-compose build.args, which are supplied by a gitignored local .env file.
+ARG HTTP_PROXY=""
+ARG HTTPS_PROXY=""
+ARG MAVEN_PROXY_HOST=""
+ARG MAVEN_PROXY_PORT=""
+ARG INSECURE_SSL=""
+
+ENV http_proxy=${HTTP_PROXY}
+ENV https_proxy=${HTTPS_PROXY}
+ENV HTTP_PROXY=${HTTP_PROXY}
+ENV HTTPS_PROXY=${HTTPS_PROXY}
+
+# ── System dependencies ────────────────────────────────────────────────────
+# apk/curl/npm natively read http_proxy/https_proxy: nothing else to do.
+# If these variables are empty, they will connect directly.
+RUN sed -i 's/https/http/g' /etc/apk/repositories && \
+    apk add --no-cache \
+    curl \
+    git \
+    nodejs \
+    npm \
+    nginx \
+    bash \
+    supervisor
+
+WORKDIR /app
+RUN mkdir -p /app/backend /app/frontend /app/nginx /var/log/supervisor
+
+# ── Maven: proxy generated only if requested ─────────────────────────────
+# If MAVEN_PROXY_HOST is empty, this block does not generate any settings.xml
+# and Maven behaves normally (direct access).
+RUN mkdir -p /root/.m2 && \
+    if [ -n "$MAVEN_PROXY_HOST" ]; then \
+      SSL_FLAGS=""; \
+      if [ -n "$INSECURE_SSL" ]; then \
+        SSL_FLAGS='true'; \
+      fi; \
+      printf '%s\n' \
+        '<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0">' \
+        '  <proxies>' \
+        '    <proxy>' \
+        '      <id>dev-proxy</id>' \
+        '      <active>true</active>' \
+        '      <protocol>http</protocol>' \
+        "      <host>${MAVEN_PROXY_HOST}</host>" \
+        "      <port>${MAVEN_PROXY_PORT}</port>" \
+        '    </proxy>' \
+        '  </proxies>' \
+        '</settings>' > /root/.m2/settings.xml; \
+    fi
+
+ENV MAVEN_OPTS="-Xmx512m${MAVEN_PROXY_HOST:+ -Dhttp.proxyHost=${MAVEN_PROXY_HOST} -Dhttp.proxyPort=${MAVEN_PROXY_PORT} -Dhttps.proxyHost=${MAVEN_PROXY_HOST} -Dhttps.proxyPort=${MAVEN_PROXY_PORT}}"
+
+# ── Nginx / Supervisor configuration ────────────────────────────────────────
+COPY docker/nginx.dev.conf /etc/nginx/nginx.conf
+COPY docker/supervisord.dev.conf /etc/supervisord.conf
+
+# ── Maven dependencies (pre-resolution for faster startup) ─────────────────
+COPY backend/pom.xml /app/backend/pom.xml
+RUN cd /app/backend && \
+    if [ -n "$INSECURE_SSL" ]; then \
+      mvn dependency:go-offline -B \
+        -Dmaven.wagon.http.ssl.insecure=true \
+        -Dmaven.wagon.http.ssl.allowall=true \
+        -Dmaven.wagon.http.ssl.ignore.validity.dates=true \
+        || true; \
+    else \
+      mvn dependency:go-offline -B || true; \
+    fi
+
+# ── NPM dependencies (npm natively reads http_proxy/https_proxy) ───────────
+COPY frontend/package*.json* /app/frontend/
+RUN if [ -f /app/frontend/package.json ]; then \
+      cd /app/frontend && npm ci --no-audit --no-fund || true; \
+    fi
+
+EXPOSE 8080 8081 5005 4200
+
+ENV JAVA_OPTS="-Xmx512m -Xms256m -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
+
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
