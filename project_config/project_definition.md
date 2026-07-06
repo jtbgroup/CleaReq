@@ -1,6 +1,6 @@
 # Application purpose
 
-The objective of this application is to generate Highlight Reports as project product to track the performance of a project. The application will be abl to calculate the CPI based on a minimum input from the user. A lot of financial metrics are loaded manually from other systems. The user will only have to report the progression during the project. The combination of the progression and the financial aspects must generate the HLR.
+The objective of this application is to manage the requests for administrative certificates. The requests will have their own lifecycle.
 
 # Code repository
 
@@ -8,7 +8,7 @@ https://github.com/jtbgroup/cleareq.git
 
 # Users & Roles
 
-- ADMIN: will be able to create projects and manage the plateform
-- PROJECT_MANAGER: will be able to record information about his project
+- ADMIN: will be able to create populations
+- POPULATION_MANAGER: will be able to record information for a determined population ans make requests for them.
 
 # Entities

@@ -89,4 +89,4 @@ User roles are stored in a dedicated join table `app_user_roles (user_id, role)`
 - All user management operations must be audited (who performed the action and when) for traceability.
 - The backend must enforce authorization checks (only ADMIN can manage users; users can only change their own password).
 - The UI must prevent users from accessing user management pages unless authorized.
-- Spring Security authorities are derived from all roles in `app_user_roles`; a user with both `ADMIN` and `PROJECT_MANAGER` receives both `ROLE_ADMIN` and `ROLE_PROJECT_MANAGER` authorities. 
+- Spring Security authorities are derived from all roles in `app_user_roles`; a user with both `ADMIN` and `POPULATION_MANAGER` receives both `ROLE_ADMIN` and `ROLE_POPULATION_MANAGER` authorities. 
