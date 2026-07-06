@@ -57,11 +57,11 @@ All the documentation must be in markdown format. Documentation is separated in 
 
 **use cases** 
 
-Located in the **use_cases** folder. Each use case lives in its own file: `doc/analysis/use-cases/UC-XX-<slug>.md`
+Located in the **use_cases** folder. Each use case lives in its own file: `doc/analysis/use-cases/UC-XX-<slug>.md. XX start from 01.
     
 **user stories**
 
-Located in the **user_stories** folder. Each user story lives in its own file: `doc/analysis/user-stories/US-XXX-<slug>.md`
+Located in the **user_stories** folder. Each user story lives in its own file: `doc/analysis/user-stories/US-XX-YYY-<slug>.md`with XX the related UC. YYY starts from 001.
 
 **prompts**
 
