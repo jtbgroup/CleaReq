@@ -1,4 +1,4 @@
-package com.webappboilerplate.dto;
+package com.cleareq.dto;
 
 import java.util.UUID;
 

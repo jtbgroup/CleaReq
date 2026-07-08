@@ -1,8 +1,8 @@
-package com.webappboilerplate.repository;
+package com.cleareq.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.webappboilerplate.entity.UserAudit;
+import com.cleareq.entity.UserAudit;
 
 import java.util.UUID;
 

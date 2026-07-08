@@ -8,6 +8,8 @@
 # - Nginx for routing
 # - 100% optional proxy configuration (via build args, empty by default)
 # ============================================
+FROM node:22.12.0-alpine AS node_runtime
+
 FROM maven:3.9.6-eclipse-temurin-21-alpine
 
 # ── Proxy (optional) ──────────────────────────────────────────────────────
@@ -29,13 +31,17 @@ ENV HTTPS_PROXY=${HTTPS_PROXY}
 # If these variables are empty, they will connect directly.
 RUN sed -i 's/https/http/g' /etc/apk/repositories && \
     apk add --no-cache \
+  ca-certificates \
     curl \
     git \
-    nodejs \
-    npm \
     nginx \
     bash \
     supervisor
+
+RUN update-ca-certificates
+
+# Use Node 22 runtime from official image to satisfy Angular CLI engine constraints.
+COPY --from=node_runtime /usr/local/ /usr/local/
 
 WORKDIR /app
 RUN mkdir -p /app/backend /app/frontend /app/nginx /var/log/supervisor

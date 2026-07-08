@@ -1,4 +1,4 @@
-package com.webappboilerplate.entity;
+package com.cleareq.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -12,7 +12,7 @@
 
 <div class="table-card">
   @if (users.length) {
-    <table mat-table [dataSource]="users" class="user-table">
+    <table mat-table [dataSource]="users" class="standard-table">
 
       <ng-container matColumnDef="username">
         <th mat-header-cell *matHeaderCellDef>{{ 'userList.username' | translate }}</th>

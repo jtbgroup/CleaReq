@@ -1,8 +1,8 @@
-package com.webappboilerplate.controller;
+package com.cleareq.controller;
 
-import com.webappboilerplate.dto.AuthDtos.LoginRequest;
-import com.webappboilerplate.dto.AuthDtos.UserResponse;
-import com.webappboilerplate.repository.AppUserRepository;
+import com.cleareq.dto.AuthDtos.LoginRequest;
+import com.cleareq.dto.AuthDtos.UserResponse;
+import com.cleareq.repository.AppUserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;

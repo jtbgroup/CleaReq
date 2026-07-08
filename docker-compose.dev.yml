@@ -3,6 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
+      pull: false
       network: host
       args:
         HTTP_PROXY: ${HTTP_PROXY:-}

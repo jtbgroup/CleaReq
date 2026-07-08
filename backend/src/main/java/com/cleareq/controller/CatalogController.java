@@ -1,7 +1,7 @@
-package com.webappboilerplate.controller;
+package com.cleareq.controller;
 
-import com.webappboilerplate.dto.CatalogDtos;
-import com.webappboilerplate.service.CatalogService;
+import com.cleareq.dto.CatalogDtos;
+import com.cleareq.service.CatalogService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

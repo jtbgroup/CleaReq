@@ -1,4 +1,4 @@
-package com.webappboilerplate.security;
+package com.cleareq.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -39,6 +39,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/api/version").permitAll()
                 .requestMatchers("/api/persons/**").hasRole("ADMIN")
+                .requestMatchers("/api/populations/**").hasRole("ADMIN")
                 .requestMatchers("/api/**").authenticated()
                 .anyRequest().permitAll()
             )

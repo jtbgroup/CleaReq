@@ -1,4 +1,4 @@
-package com.webappboilerplate.security;
+package com.cleareq.security;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Component;

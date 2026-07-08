@@ -1,6 +1,6 @@
-package com.webappboilerplate.repository;
+package com.cleareq.repository;
 
-import com.webappboilerplate.entity.CatalogEntry;
+import com.cleareq.entity.CatalogEntry;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

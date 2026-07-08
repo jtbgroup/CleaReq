@@ -1,4 +1,4 @@
-package com.webappboilerplate.security;
+package com.cleareq.security;
 
 import jakarta.servlet.http.HttpSessionEvent;
 import jakarta.servlet.http.HttpSessionListener;

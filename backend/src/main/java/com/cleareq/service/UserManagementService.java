@@ -1,11 +1,11 @@
-package com.webappboilerplate.service;
+package com.cleareq.service;
 
-import com.webappboilerplate.dto.UserDtos;
-import com.webappboilerplate.entity.AppUser;
-import com.webappboilerplate.entity.UserAudit;
-import com.webappboilerplate.repository.AppUserRepository;
-import com.webappboilerplate.repository.UserAuditRepository;
-import com.webappboilerplate.security.SessionRegistry;
+import com.cleareq.dto.UserDtos;
+import com.cleareq.entity.AppUser;
+import com.cleareq.entity.UserAudit;
+import com.cleareq.repository.AppUserRepository;
+import com.cleareq.repository.UserAuditRepository;
+import com.cleareq.security.SessionRegistry;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

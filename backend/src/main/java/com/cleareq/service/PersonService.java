@@ -1,10 +1,10 @@
-package com.webappboilerplate.service;
+package com.cleareq.service;
 
-import com.webappboilerplate.dto.PersonDtos;
-import com.webappboilerplate.entity.CatalogEntry;
-import com.webappboilerplate.entity.Person;
-import com.webappboilerplate.repository.CatalogEntryRepository;
-import com.webappboilerplate.repository.PersonRepository;
+import com.cleareq.dto.PersonDtos;
+import com.cleareq.entity.CatalogEntry;
+import com.cleareq.entity.Person;
+import com.cleareq.repository.CatalogEntryRepository;
+import com.cleareq.repository.PersonRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

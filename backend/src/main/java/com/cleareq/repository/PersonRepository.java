@@ -1,6 +1,6 @@
-package com.webappboilerplate.repository;
+package com.cleareq.repository;
 
-import com.webappboilerplate.entity.Person;
+import com.cleareq.entity.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

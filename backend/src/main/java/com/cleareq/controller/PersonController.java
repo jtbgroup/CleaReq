@@ -1,7 +1,7 @@
-package com.webappboilerplate.controller;
+package com.cleareq.controller;
 
-import com.webappboilerplate.dto.PersonDtos;
-import com.webappboilerplate.service.PersonService;
+import com.cleareq.dto.PersonDtos;
+import com.cleareq.service.PersonService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
