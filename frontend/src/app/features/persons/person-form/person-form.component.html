@@ -1,0 +1,57 @@
+<div class="page-header">
+  <button mat-icon-button class="btn-back" (click)="cancel()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <h2 class="page-title">
+    {{ (isEdit ? 'personForm.editPerson' : 'personForm.createPerson') | translate }}
+  </h2>
+</div>
+
+<div class="form-card">
+  <form [formGroup]="personForm" (ngSubmit)="onSubmit()" class="person-form">
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'personList.lastName' | translate }}</mat-label>
+      <input matInput formControlName="lastName" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'personList.firstName' | translate }}</mat-label>
+      <input matInput formControlName="firstName" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'personList.email' | translate }}</mat-label>
+      <input matInput type="email" formControlName="email" [readonly]="isEdit" required />
+      @if (personForm.get('email')?.invalid && personForm.get('email')?.touched) {
+        <mat-error>{{ 'personForm.invalidEmail' | translate }}</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'personList.function' | translate }}</mat-label>
+      <mat-select formControlName="functionId" required>
+        @for (entry of functions; track entry.id) {
+          <mat-option [value]="entry.id">{{ entry.label }}</mat-option>
+        }
+      </mat-select>
+      @if (personForm.get('functionId')?.invalid && personForm.get('functionId')?.touched) {
+        <mat-error>{{ 'personForm.functionRequired' | translate }}</mat-error>
+      }
+    </mat-form-field>
+
+    @if (error) {
+      <div class="form-error">{{ error }}</div>
+    }
+
+    <div class="form-actions">
+      <button mat-stroked-button type="button" (click)="cancel()">
+        {{ 'personList.cancel' | translate }}
+      </button>
+      <button mat-flat-button class="btn-save" type="submit" [disabled]="personForm.invalid">
+        {{ (isEdit ? 'personList.save' : 'personList.create') | translate }}
+      </button>
+    </div>
+
+  </form>
+</div>

@@ -1,0 +1,37 @@
+[
+    {
+        "label": "Project Manager",
+        "catalogType": "FUNCTION",
+        "enabled": true
+    },
+    {
+        "label": "Business Analyst",
+        "catalogType": "FUNCTION",
+        "enabled": true
+    },
+    {
+        "label": "Functional Analyst",
+        "catalogType": "FUNCTION",
+        "enabled": true
+    },
+    {
+        "label": "Architect",
+        "catalogType": "FUNCTION",
+        "enabled": true
+    },
+    {
+        "label": "Developer",
+        "catalogType": "FUNCTION",
+        "enabled": true
+    },
+    {
+        "label": "Tester",
+        "catalogType": "FUNCTION",
+        "enabled": true
+    },
+    {
+        "label": "Designer",
+        "catalogType": "FUNCTION",
+        "enabled": true
+    }
+]

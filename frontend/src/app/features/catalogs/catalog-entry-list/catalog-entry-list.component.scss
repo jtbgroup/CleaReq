@@ -1,0 +1,129 @@
+@use 'styles/variables' as *;
+
+// ── Page header ───────────────────────────────────────────────────────────────
+
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.btn-back {
+  color: $color-brand-deep;
+}
+
+.page-title {
+  margin: 0;
+  flex: 1;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $color-brand-deep;
+}
+
+.list-error {
+  color: $color-danger-text;
+  margin-bottom: 16px;
+}
+
+// ── Form card ─────────────────────────────────────────────────────────────────
+
+.form-card {
+  background: $color-bg-white;
+  border-radius: $border-radius-lg;
+  border: 1px solid rgba(57, 73, 171, 0.15);
+  box-shadow: $shadow-card-md;
+  padding: 24px 28px;
+  margin-bottom: 24px;
+}
+
+.form-title {
+  margin: 0 0 20px;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  color: $color-brand-deep;
+}
+
+.entry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 480px;
+
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+// ── Table ─────────────────────────────────────────────────────────────────────
+
+.table-card {
+  background: $color-bg-white;
+  border-radius: $border-radius-lg;
+  border: 1px solid $table-card-border;
+  box-shadow: $shadow-card-md;
+  overflow: hidden;
+}
+
+.entry-table {
+  width: 60%;
+}
+
+.action-btns {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+// ── Status badge ──────────────────────────────────────────────────────────────
+
+.status-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: $font-weight-bold;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: $border-radius-pill;
+  padding: 3px 10px;
+
+  &.enabled {
+    background: $color-success-bg;
+    color: $color-success-text;
+  }
+
+  &.disabled {
+    background: $color-warning-bg;
+    color: $color-warning-text;
+  }
+}
+
+// ── Empty state ───────────────────────────────────────────────────────────────
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  color: rgba(0, 0, 0, 0.4);
+
+  .empty-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 12px;
+    opacity: 0.35;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+}
