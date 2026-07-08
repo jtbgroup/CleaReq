@@ -3,6 +3,8 @@ export const en = {
   header: {
     admin: 'Admin',
     users: 'Users',
+    persons: 'Persons',
+    catalogs: 'Catalogs',
     changePassword: 'Change password',
     signOut: 'Sign out',
     language: 'Language',
@@ -64,6 +66,69 @@ export const en = {
   userForm: {
     createUser: 'Create user',
     editUser: 'Edit user',
+  },
+
+  // ── Person List ─────────────────────────────────────────────────────────────
+  personList: {
+    title: 'Persons',
+    newPerson: 'New person',
+    lastName: 'Last name',
+    firstName: 'First name',
+    email: 'Email',
+    function: 'Function',
+    status: 'Status',
+    actions: 'Actions',
+    enabled: 'Enabled',
+    disabled: 'Disabled',
+    cancel: 'Cancel',
+    save: 'Save',
+    create: 'Create',
+    disable: 'Disable',
+    edit: 'Edit',
+    noPersons: 'No persons found.',
+    errorLoad: 'Unable to load persons',
+    errorCreate: 'Unable to create person',
+    errorUpdate: 'Unable to update person',
+    errorDisable: 'Unable to disable person',
+  },
+
+  // ── Person Form ─────────────────────────────────────────────────────────────
+  personForm: {
+    createPerson: 'Create person',
+    editPerson: 'Edit person',
+    functionRequired: 'Function is required',
+    invalidEmail: 'Please enter a valid email',
+    errorLoadFunctions: 'Unable to load available functions',
+  },
+
+  // ── Catalog Type List ────────────────────────────────────────────────────────
+  catalogTypeList: {
+    title: 'Catalogs',
+    noTypes: 'No catalogs available.',
+    errorLoad: 'Unable to load catalogs',
+  },
+
+  // ── Catalog Entry List ───────────────────────────────────────────────────────
+  catalogEntryList: {
+    newEntry: 'New entry',
+    createEntry: 'Create entry',
+    editEntry: 'Edit entry',
+    label: 'Label',
+    status: 'Status',
+    actions: 'Actions',
+    enabled: 'Enabled',
+    disabled: 'Disabled',
+    cancel: 'Cancel',
+    save: 'Save',
+    create: 'Create',
+    edit: 'Edit',
+    disable: 'Disable',
+    enable: 'Enable',
+    noEntries: 'No entries found.',
+    errorLoad: 'Unable to load entries',
+    errorCreate: 'Unable to create entry. It may already exist in this catalog.',
+    errorUpdate: 'Unable to update entry. It may already exist in this catalog.',
+    errorToggle: 'Unable to update entry status',
   },
 
   // ── Languages ───────────────────────────────────────────────────────────────

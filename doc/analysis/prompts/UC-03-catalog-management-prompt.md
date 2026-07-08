@@ -2,12 +2,12 @@
 
 ## Context
 
-This prompt is used to generate all the code and resources required to implement UC-03 (Catalog Management) in the webappboilerplate application. This use case introduces a **generic** catalog mechanism, so that new catalog types can be added later as a data operation, without a new Flyway migration. The first concrete catalog is **Function**, consumed later by UC-04 (Person Management).
+This prompt is used to generate all the code and resources required to implement UC-03 (Catalog Management) in the ClearReq application. This use case introduces a **generic** catalog mechanism, so that new catalog types can be added later as a data operation, without a new Flyway migration. The first concrete catalog is **Function**, consumed later by UC-04 (Person Management).
 
 ### Stack
 
-- **Backend**: Java 21, Spring Boot 3+, Spring Security (session-based, BCrypt 12), Spring Data JPA, Flyway, PostgreSQL 17+
-- **Frontend**: Angular 19+, Angular Material, standalone components, lazy-loaded feature modules
+- **Backend**: Java, Spring Boot, Spring Security (session-based, BCrypt 12), Spring Data JPA, Flyway, PostgreSQL
+- **Frontend**: Angular, Angular Material, standalone components, lazy-loaded feature modules
 - **Architecture**: Monorepo — backend serves the built frontend as static assets on port 8090 (production)
 
 ### Key Constraints

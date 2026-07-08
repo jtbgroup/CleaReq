@@ -148,15 +148,26 @@ quality-frontend:
 # Usage:
 #   make seed-demo                            # default users.json
 #   make seed-demo DATA=scripts/demo-data/users-real.json
-seed-demo:
+
+
+seed-reset-postgres: ## 🗑  Reset via SQL direct (requiert psql + PostgreSQL)
+	@echo "🌱 Resetting data"
+	@chmod +x scripts/reset-sql.sh
+	@scripts/reset-sql.sh \
+		$${DB_HOST:-localhost} \
+		$${DB_PORT:-5432} \
+		$${DB_NAME:-cleareq} \
+		$${DB_USER:-cleareq} \
+		$${DB_PASS:-cleareq} \
+		$${ADMIN:-admin}
+
+seed-push-data-demo:
 	@echo "🌱 Seeding demo data (dev — http://localhost:8081)..."
 	@chmod +x scripts/seed-demo.sh
 	@scripts/seed-demo.sh http://localhost:8081 admin admin123 $(DATA)
 	@echo ""
  
-seed-demo-prod:
-	@echo "🌱 Seeding demo data (prod — http://localhost:8090)..."
-	@chmod +x scripts/seed-demo.sh
-	@scripts/seed-demo.sh http://localhost:8090 admin admin123 $(DATA)
-	@echo ""
+seed-full-demo: ## 🌱 Seed demo data after reset (dev)
+	@$(MAKE) seed-reset-postgres
+	@$(MAKE) seed-push-data-demo
  

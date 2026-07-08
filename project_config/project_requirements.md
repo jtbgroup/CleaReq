@@ -12,7 +12,7 @@ The project will be a web based application in monorepo, meaning the backend and
   - Flyway
   - PostgreSQL 17+
 - Frontend: 
-  - Angular 19+
+  - Angular 21+
   - Angular Material
   - standalone components
   - lazy-loaded feature modules
@@ -42,6 +42,11 @@ at the root level, you'll find:
 ## fontend
 
 Contains not only the code of the frontend but also the frontend automated tests located in a **e2e** folder.
+
+### angular
+
+* Every component must have it's own .ts, .html and .scss.
+* Use moderne language features like Signals
 
 ## backend
 

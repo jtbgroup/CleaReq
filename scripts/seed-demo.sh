@@ -31,6 +31,8 @@ DATA_DIR="$SCRIPT_DIR/demo-data"
 # 4th argument: custom users JSON file (absolute or relative to CWD)
 # Defaults to scripts/demo-data/users.json
 USERS_FILE="${4:-$DATA_DIR/users.json}"
+CATALOGS_FILE="${5:-$DATA_DIR/catalogs.json}"
+PERSONS_FILE="${6:-$DATA_DIR/persons.json}"
 
 COOKIE_JAR=$(mktemp)
 trap 'rm -f "$COOKIE_JAR"' EXIT
@@ -109,6 +111,101 @@ else
 
   echo ""
   log_info "Users: $CREATED created, $SKIPPED skipped (total: $TOTAL)"
+fi
+
+
+
+# ─── Seed catalogs ─────────────────────────────────────────────────────────────
+log_section "Seeding catalogs from $CATALOGS_FILE"
+
+if [ ! -f "$CATALOGS_FILE" ]; then
+  log_warn "No catalogs.json found at $CATALOGS_FILE — skipping"
+else
+  TOTAL=$(jq length "$CATALOGS_FILE")
+  CREATED=0
+  SKIPPED=0
+
+  for i in $(seq 0 $(( TOTAL - 1 ))); do
+    CATALOG_ENTRY=$(jq -c ".[$i]" "$CATALOGS_FILE")
+    LABEL=$(echo "$CATALOG_ENTRY" | jq -r '.label')
+    CATALOG_TYPE=$(echo "$CATALOG_ENTRY" | jq -r '.catalogType')
+
+    HTTP_STATUS=$(curl -s -o /tmp/seed_response.json -w "%{http_code}" \
+      -X POST "$BASE_URL/api/catalogs/$CATALOG_TYPE/entries" \
+      -H "Content-Type: application/json" \
+      -b "$COOKIE_JAR" \
+      -d "$CATALOG_ENTRY")
+
+    case "$HTTP_STATUS" in
+      200|201)
+        log_ok "Created catalog entry: $LABEL"
+        CREATED=$(( CREATED + 1 ))
+        ;;
+      409)
+        log_warn "Skipped catalog entry: $LABEL (already exists)"
+        SKIPPED=$(( SKIPPED + 1 ))
+        ;;
+      *)
+        REASON=$(jq -r '.message // "unknown error"' /tmp/seed_response.json 2>/dev/null || echo "unknown error")
+        log_error "Failed to create catalog entry: $LABEL (HTTP $HTTP_STATUS — $REASON)"
+        ;;
+    esac
+  done
+
+  echo ""
+  log_info "Catalog entries: $CREATED created, $SKIPPED skipped (total: $TOTAL)"
+fi
+
+
+# ─── Seed persons ─────────────────────────────────────────────────────────────
+log_section "Seeding persons from $PERSONS_FILE"
+
+if [ ! -f "$PERSONS_FILE" ]; then
+  log_warn "No persons.json found at $PERSONS_FILE — skipping"
+else
+  TOTAL=$(jq length "$PERSONS_FILE")
+  CREATED=0
+  SKIPPED=0
+
+
+    FUNCTION_ENTRIES=$(curl -s \
+      -X GET "$BASE_URL/api/catalogs/FUNCTION/entries" \
+      -H "Content-Type: application/json" \
+      -b "$COOKIE_JAR")
+
+  for i in $(seq 0 $(( TOTAL - 1 ))); do
+    PERSON_ENTRY=$(jq -c ".[$i]" "$PERSONS_FILE")
+    LAST_NAME=$(echo "$PERSON_ENTRY" | jq -r '.lastName')
+    FIRST_NAME=$(echo "$PERSON_ENTRY" | jq -r '.firstName')
+    EMAIL=$(echo "$PERSON_ENTRY" | jq -r '.email')
+    FUNCTION=$(echo "$PERSON_ENTRY" | jq -r '.function')
+    FUNCTION_ID=$(echo "$FUNCTION_ENTRIES" | jq -r ".[] | select(.label == \"$FUNCTION\") | .id")
+    UPDATED_PERSON=$(echo "$PERSON_ENTRY" | jq --arg uuid "$FUNCTION_ID" '.functionId = $uuid | del(.function)')
+
+    HTTP_STATUS=$(curl -s -o /tmp/seed_response.json -w "%{http_code}" \
+      -X POST "$BASE_URL/api/persons" \
+      -H "Content-Type: application/json" \
+      -b "$COOKIE_JAR" \
+      -d "$UPDATED_PERSON")
+
+    case "$HTTP_STATUS" in
+      200|201)
+        log_ok "Created person: $LAST_NAME $FIRST_NAME"
+        CREATED=$(( CREATED + 1 ))
+        ;;
+      409)
+        log_warn "Skipped person: $LAST_NAME $FIRST_NAME (already exists)"
+        SKIPPED=$(( SKIPPED + 1 ))
+        ;;
+      *)
+        REASON=$(jq -r '.message // "unknown error"' /tmp/seed_response.json 2>/dev/null || echo "unknown error")
+        log_error "Failed to create person: $LAST_NAME $FIRST_NAME (HTTP $HTTP_STATUS — $REASON)"
+        ;;
+    esac
+  done
+
+  echo ""
+  log_info "Catalog entries: $CREATED created, $SKIPPED skipped (total: $TOTAL)"
 fi
 
 # ─── Logout ──────────────────────────────────────────────────────────────────

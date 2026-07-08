@@ -16,6 +16,14 @@
         <mat-icon>group</mat-icon>
         <span>{{ 'header.users' | translate }}</span>
       </button>
+      <button mat-menu-item (click)="router.navigate(['/admin/persons'])">
+        <mat-icon>badge</mat-icon>
+        <span>{{ 'header.persons' | translate }}</span>
+      </button>
+      <button mat-menu-item (click)="router.navigate(['/admin/catalogs'])">
+        <mat-icon>list_alt</mat-icon>
+        <span>{{ 'header.catalogs' | translate }}</span>
+      </button>
     </mat-menu>
   }
 

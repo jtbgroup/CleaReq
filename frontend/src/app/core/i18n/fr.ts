@@ -5,6 +5,8 @@ export const fr: TranslationKeys = {
   header: {
     admin: 'Admin',
     users: 'Utilisateurs',
+    persons: 'Personnes',
+    catalogs: 'Catalogues',
     changePassword: 'Changer le mot de passe',
     signOut: 'Se déconnecter',
     language: 'Langue',
@@ -66,6 +68,69 @@ export const fr: TranslationKeys = {
   userForm: {
     createUser: 'Créer un utilisateur',
     editUser: "Modifier l'utilisateur",
+  },
+
+  // ── Person List ─────────────────────────────────────────────────────────────
+  personList: {
+    title: 'Personnes',
+    newPerson: 'Nouvelle personne',
+    lastName: 'Nom',
+    firstName: 'Prénom',
+    email: 'Email',
+    function: 'Fonction',
+    status: 'Statut',
+    actions: 'Actions',
+    enabled: 'Actif',
+    disabled: 'Inactif',
+    cancel: 'Annuler',
+    save: 'Enregistrer',
+    create: 'Créer',
+    disable: 'Désactiver',
+    edit: 'Modifier',
+    noPersons: 'Aucune personne trouvée.',
+    errorLoad: 'Impossible de charger les personnes',
+    errorCreate: 'Impossible de créer la personne',
+    errorUpdate: 'Impossible de mettre à jour la personne',
+    errorDisable: 'Impossible de désactiver la personne',
+  },
+
+  // ── Person Form ─────────────────────────────────────────────────────────────
+  personForm: {
+    createPerson: 'Créer une personne',
+    editPerson: 'Modifier la personne',
+    functionRequired: 'La fonction est requise',
+    invalidEmail: 'Veuillez saisir une adresse email valide',
+    errorLoadFunctions: 'Impossible de charger les fonctions disponibles',
+  },
+
+  // ── Catalog Type List ────────────────────────────────────────────────────────
+  catalogTypeList: {
+    title: 'Catalogues',
+    noTypes: 'Aucun catalogue disponible.',
+    errorLoad: 'Impossible de charger les catalogues',
+  },
+
+  // ── Catalog Entry List ───────────────────────────────────────────────────────
+  catalogEntryList: {
+    newEntry: 'Nouvelle entrée',
+    createEntry: 'Créer une entrée',
+    editEntry: "Modifier l'entrée",
+    label: 'Libellé',
+    status: 'Statut',
+    actions: 'Actions',
+    enabled: 'Actif',
+    disabled: 'Inactif',
+    cancel: 'Annuler',
+    save: 'Enregistrer',
+    create: 'Créer',
+    edit: 'Modifier',
+    disable: 'Désactiver',
+    enable: 'Activer',
+    noEntries: 'Aucune entrée trouvée.',
+    errorLoad: 'Impossible de charger les entrées',
+    errorCreate: "Impossible de créer l'entrée. Elle existe peut-être déjà dans ce catalogue.",
+    errorUpdate: "Impossible de mettre à jour l'entrée. Elle existe peut-être déjà dans ce catalogue.",
+    errorToggle: "Impossible de mettre à jour le statut de l'entrée",
   },
 
   // ── Languages ───────────────────────────────────────────────────────────────

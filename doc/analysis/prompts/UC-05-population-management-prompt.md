@@ -2,12 +2,12 @@
 
 ## Context
 
-This prompt is used to generate all the code and resources required to implement UC-05 (Population Management) in the webappboilerplate application. A population groups existing persons (UC-04) as members, each with a function (from the Function catalog, UC-03) and a membership period (start/end date). A person is never duplicated: multiple memberships (even within the same population) all reference the single `person` record.
+This prompt is used to generate all the code and resources required to implement UC-05 (Population Management) in the ClearReq application. A population groups existing persons (UC-04) as members, each with a function (from the Function catalog, UC-03) and a membership period (start/end date). A person is never duplicated: multiple memberships (even within the same population) all reference the single `person` record.
 
 ### Stack
 
-- **Backend**: Java 21, Spring Boot 3+, Spring Security (session-based, BCrypt 12), Spring Data JPA, Flyway, PostgreSQL 17+
-- **Frontend**: Angular 19+, Angular Material, standalone components, lazy-loaded feature modules
+- **Backend**: Java, Spring Boot, Spring Security (session-based, BCrypt 12), Spring Data JPA, Flyway, PostgreSQL
+- **Frontend**: Angular, Angular Material, standalone components, lazy-loaded feature modules
 - **Architecture**: Monorepo — backend serves the built frontend as static assets on port 8090 (production)
 
 ### Key Constraints

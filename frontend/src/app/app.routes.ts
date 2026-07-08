@@ -44,6 +44,46 @@ export const routes: Routes = [
         canActivate: [adminGuard],
         loadComponent: () =>
           import('./features/users/user-form/user-form.component').then(m => m.UserFormComponent)
+      },
+      {
+        path: 'admin/catalogs',
+        canActivate: [adminGuard],
+        loadComponent: () =>
+          import('./features/catalogs/catalog-type-list/catalog-type-list.component').then(
+            m => m.CatalogTypeListComponent
+          )
+      },
+      {
+        path: 'admin/catalogs/:typeCode',
+        canActivate: [adminGuard],
+        loadComponent: () =>
+          import('./features/catalogs/catalog-entry-list/catalog-entry-list.component').then(
+            m => m.CatalogEntryListComponent
+          )
+      },
+      {
+        path: 'admin/persons',
+        canActivate: [adminGuard],
+        loadComponent: () =>
+          import('./features/persons/person-list/person-list.component').then(
+            m => m.PersonListComponent
+          )
+      },
+      {
+        path: 'admin/persons/new',
+        canActivate: [adminGuard],
+        loadComponent: () =>
+          import('./features/persons/person-form/person-form.component').then(
+            m => m.PersonFormComponent
+          )
+      },
+      {
+        path: 'admin/persons/:id/edit',
+        canActivate: [adminGuard],
+        loadComponent: () =>
+          import('./features/persons/person-form/person-form.component').then(
+            m => m.PersonFormComponent
+          )
       }
     ]
   },
