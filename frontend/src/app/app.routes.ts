@@ -84,6 +84,54 @@ export const routes: Routes = [
           import('./features/persons/person-form/person-form.component').then(
             m => m.PersonFormComponent
           )
+      },
+      {
+        path: 'admin/populations',
+        canActivate: [adminGuard],
+        loadComponent: () =>
+          import('./features/populations/population-list/population-list.component').then(
+            m => m.PopulationListComponent
+          )
+      },
+      {
+        path: 'admin/populations/new',
+        canActivate: [adminGuard],
+        loadComponent: () =>
+          import('./features/populations/population-form/population-form.component').then(
+            m => m.PopulationFormComponent
+          )
+      },
+      {
+        path: 'admin/populations/:id/edit',
+        canActivate: [adminGuard],
+        loadComponent: () =>
+          import('./features/populations/population-form/population-form.component').then(
+            m => m.PopulationFormComponent
+          )
+      },
+      {
+        path: 'admin/populations/:id',
+        canActivate: [adminGuard],
+        loadComponent: () =>
+          import('./features/populations/population-detail/population-detail.component').then(
+            m => m.PopulationDetailComponent
+          )
+      },
+      {
+        path: 'admin/populations/:populationId/members/new',
+        canActivate: [adminGuard],
+        loadComponent: () =>
+          import('./features/populations/member-form/member-form.component').then(
+            m => m.MemberFormComponent
+          )
+      },
+      {
+        path: 'admin/populations/:populationId/members/:memberId/edit',
+        canActivate: [adminGuard],
+        loadComponent: () =>
+          import('./features/populations/member-form/member-form.component').then(
+            m => m.MemberFormComponent
+          )
       }
     ]
   },

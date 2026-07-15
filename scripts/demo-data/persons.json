@@ -1,33 +1,33 @@
 [
     {
-        "lastName": "Lamquet",
-        "firstName": "Maxime",
-        "email": "maxime.lamquet@smals.be",
+        "lastName": "Lommet",
+        "firstName": "Michel",
+        "email": "michel.lommet@smals.be",
         "function": "Project Manager"
     }
 ,
         {
-        "lastName": "Collet",
-        "firstName": "Laurent",
-        "email": "laurent.collet@smals.be",
+        "lastName": "Calluwaert",
+        "firstName": "Léon",
+        "email": "leon.calluwaert@smals.be",
         "function": "Developer"
     },
         {
-        "lastName": "Baugnet",
-        "firstName": "Sophie",
-        "email": "sophie.baugnet@smals.be",
+        "lastName": "Bigard",
+        "firstName": "Stéphane",
+        "email": "stephane.bigard@smals.be",
         "function": "Functional Analyst"
     }
     ,
         {
-        "lastName": "Massaert",
-        "firstName": "Delphine",
-        "email": "delphine.massaert@smals.be",
+        "lastName": "Minnaert",
+        "firstName": "Daisy",
+        "email": "daisy.minnaert@smals.be",
         "function": "Functional Analyst"
     }   ,    {
-        "lastName": "Caline",
-        "firstName": "Nicolas",
-        "email": "nicolas.caline@smals.be",
+        "lastName": "Carpenter",
+        "firstName": "Nathalie",
+        "email": "nathalie.carpenter@smals.be",
         "function": "Architect"
     }
 ]

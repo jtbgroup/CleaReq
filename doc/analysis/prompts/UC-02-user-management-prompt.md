@@ -30,7 +30,7 @@ This prompt is used to generate all the code and resources required to implement
 
 - `AppUser` entity with fields: `id` (UUID), `username` (unique), `password` (hashed), `enabled` (boolean).
 - Roles stored as `@ElementCollection(fetch = EAGER)` in join table `app_user_roles (user_id, role)`.
-- `roles` field type: `Set<Role>` (enum: `ADMIN`, `PROJECT_MANAGER`).
+- `roles` field type: `Set<Role>` (enum: `ADMIN`, `POPULATION_MANAGER`, `SECURITY_OFFICER`).
 - Helper method: `boolean hasRole(Role role)`.
 
 #### Repository
@@ -81,9 +81,7 @@ record UserResponse(String username, List<String> roles) {}
 - File: `V2__UC-02-user-management.sql`
 - SQL header comment: `-- Use case: UC-02`
 - Creates `user_audit` table.
-- Creates `app_user_roles (user_id UUID FK, role VARCHAR(50))` join table with composite PK.
-- Migrates existing `role` column data from `app_user` into `app_user_roles`.
-- Drops `role` column from `app_user`.
+- `app_user_roles` is already created in UC-01 baseline and is reused here.
 
 ```sql
 -- Use case: UC-02
@@ -102,11 +100,6 @@ CREATE TABLE app_user_roles (
     role    VARCHAR(50) NOT NULL,
     PRIMARY KEY (user_id, role)
 );
-
-INSERT INTO app_user_roles (user_id, role)
-SELECT id, role FROM app_user;
-
-ALTER TABLE app_user DROP COLUMN role;
 ```
 
 ---
@@ -203,4 +196,4 @@ frontend/
 - [ ] All user management endpoints return correct HTTP status codes (200/400/401/403).
 - [ ] API responses do not leak sensitive information (e.g., hashed passwords).
 - [ ] Frontend guards prevent unauthorized access.
-- [ ] Flyway V2 migrates `role` column to `app_user_roles` join table cleanly.
+- [ ] Flyway V2 creates `user_audit` cleanly on top of the UC-01 schema.

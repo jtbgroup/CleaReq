@@ -2,7 +2,7 @@
 
 ## User Story
 
-As a user (ADMIN or PROJECT_MANAGER),
+As a user (ADMIN, POPULATION_MANAGER, or SECURITY_OFFICER),
 I want to receive a clear error message when my credentials are invalid,
 So that I know my login attempt has failed without exposing sensitive information.
 

@@ -25,7 +25,7 @@ So that I can manage access to the application with fine-grained permissions.
   - Then the form is invalid and submission is blocked
 
 - Given I am on the User Management page
-  - When I edit a user and assign multiple roles (e.g. ADMIN + PROJECT_MANAGER)
+  - When I edit a user and assign multiple roles (e.g. ADMIN + POPULATION_MANAGER)
   - Then the user receives all selected roles and can access resources protected by any of those roles
 
 - Given I am on the User Management page

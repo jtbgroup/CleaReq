@@ -30,7 +30,8 @@ public class AppUser {
 
     public enum Role {
         ADMIN,
-        PROJECT_MANAGER
+        POPULATION_MANAGER,
+        SECURITY_OFFICER
     }
 
     // Getters & Setters

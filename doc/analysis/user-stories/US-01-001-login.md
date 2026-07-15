@@ -2,7 +2,7 @@
 
 ## User Story
 
-As a user (ADMIN or PROJECT_MANAGER),
+As a user (ADMIN, POPULATION_MANAGER, or SECURITY_OFFICER),
 I want to log in with my username and password,
 So that I can access the application.
 

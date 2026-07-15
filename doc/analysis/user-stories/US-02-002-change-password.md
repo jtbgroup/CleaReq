@@ -2,7 +2,7 @@
 
 ## User Story
 
-As an authenticated user (ADMIN or PROJECT_MANAGER),
+As an authenticated user (ADMIN, POPULATION_MANAGER, or SECURITY_OFFICER),
 I want to change my password,
 So that I can keep my account secure.
 

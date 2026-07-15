@@ -59,9 +59,21 @@ init:
 # ============================================
 # DEVELOPMENT (H2 + Hot Reload)
 # ============================================
-dev-start:
+dev-start-build:
 	@echo "🚀 Starting development environment (H2)..."
 	docker compose -f docker-compose.dev.yml up -d --build
+	@echo ""
+	@echo "✅ Development services started!"
+	@echo "   🌐 App (Nginx):       http://localhost:8080"
+	@echo "   🎨 Angular direct:    http://localhost:4200"
+	@echo "   🔧 Backend direct:    http://localhost:8081"
+	@echo "   🐛 Remote Debug:      localhost:5005"
+	@echo ""
+	@echo "📋 View logs: make dev-logs"
+
+dev-start:
+	@echo "🚀 Starting development environment (H2)..."
+	docker compose -f docker-compose.dev.yml up -d
 	@echo ""
 	@echo "✅ Development services started!"
 	@echo "   🌐 App (Nginx):       http://localhost:8080"

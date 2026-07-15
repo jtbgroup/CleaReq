@@ -24,6 +24,10 @@
         <mat-icon>list_alt</mat-icon>
         <span>{{ 'header.catalogs' | translate }}</span>
       </button>
+      <button mat-menu-item (click)="router.navigate(['/admin/populations'])">
+        <mat-icon>groups</mat-icon>
+        <span>{{ 'header.populations' | translate }}</span>
+      </button>
     </mat-menu>
   }
 

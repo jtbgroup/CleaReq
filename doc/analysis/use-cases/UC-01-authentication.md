@@ -7,7 +7,8 @@ Allows a user to authenticate into the application using a username and password
 ## Actors
 
 - ADMIN
-- PROJECT_MANAGER
+- POPULATION_MANAGER
+- SECURITY_OFFICER
 
 ## Preconditions
 
@@ -19,7 +20,7 @@ Allows a user to authenticate into the application using a username and password
 2. The user enters their `username` and `password`.
 3. The backend validates the credentials via Spring Security.
 4. A session is created server-side.
-5. The backend returns the authenticated user's information (username, role).
+5. The backend returns the authenticated user's information (username, roles).
 6. The user is redirected to the home page.
 
 ## Alternative Flow — Invalid Credentials

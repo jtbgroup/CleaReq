@@ -1,10 +1,14 @@
 export const en = {
+  // ── Global ─────────────────────────────────────────────────────────────────
+  loading: 'Loading...',
+
   // ── Header ──────────────────────────────────────────────────────────────────
   header: {
     admin: 'Admin',
     users: 'Users',
     persons: 'Persons',
     catalogs: 'Catalogs',
+    populations: 'Populations',
     changePassword: 'Change password',
     signOut: 'Sign out',
     language: 'Language',
@@ -129,6 +133,65 @@ export const en = {
     errorCreate: 'Unable to create entry. It may already exist in this catalog.',
     errorUpdate: 'Unable to update entry. It may already exist in this catalog.',
     errorToggle: 'Unable to update entry status',
+  },
+
+  // ── Population List ───────────────────────────────────────────────────────
+  populationList: {
+    title: 'Populations',
+    newPopulation: 'New population',
+    name: 'Name',
+    status: 'Status',
+    memberCount: 'Members',
+    actions: 'Actions',
+    active: 'Active',
+    closed: 'Closed',
+    edit: 'Edit',
+    viewMembers: 'View members',
+    noPopulations: 'No populations found.',
+    errorLoad: 'Unable to load populations',
+    errorCreate: 'Unable to create population',
+    errorUpdate: 'Unable to update population',
+  },
+
+  // ── Population Form ────────────────────────────────────────────────────────
+  populationForm: {
+    createPopulation: 'Create population',
+    editPopulation: 'Edit population',
+    nameRequired: 'Population name is required',
+    nameUnique: 'A population with this name already exists',
+    statusRequired: 'Status is required',
+    cancel: 'Cancel',
+    save: 'Save',
+  },
+
+  // ── Population Members ─────────────────────────────────────────────────────
+  populationMembers: {
+    title: 'Members',
+    addMember: 'Add member',
+    personName: 'Person',
+    function: 'Function',
+    startDate: 'Start date',
+    endDate: 'End date',
+    actions: 'Actions',
+    edit: 'Edit',
+    errorLoad: 'Unable to load members',
+    errorAdd: 'Unable to add member',
+    errorUpdate: 'Unable to update membership',
+    personDisabled: 'This person is disabled and cannot be added',
+    functionDisabled: 'The selected function is no longer enabled',
+    endDateBeforeStart: 'End date must be on or after start date',
+    noMembers: 'No members in this population.',
+  },
+
+  // ── Member Form ────────────────────────────────────────────────────────────
+  memberForm: {
+    addMember: 'Add member',
+    editMember: 'Edit membership',
+    personRequired: 'Person is required',
+    functionRequired: 'Function is required',
+    startDateRequired: 'Start date is required',
+    cancel: 'Cancel',
+    save: 'Save',
   },
 
   // ── Languages ───────────────────────────────────────────────────────────────

@@ -12,7 +12,7 @@ import { UserService, UserManagementDto } from '../../../core/services/user.serv
 import { I18nService } from '../../../core/i18n/i18n.service';
 import { TranslatePipe } from '../../../core/i18n/translate.pipe';
 
-const ALL_ROLES = ['ADMIN', 'PROJECT_MANAGER'];
+const ALL_ROLES = ['ADMIN', 'POPULATION_MANAGER', 'SECURITY_OFFICER'];
 
 @Component({
   selector: 'app-user-form',

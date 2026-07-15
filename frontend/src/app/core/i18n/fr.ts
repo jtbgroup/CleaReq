@@ -1,13 +1,15 @@
 import { TranslationKeys } from './en';
 
 export const fr: TranslationKeys = {
+  // ── Global ─────────────────────────────────────────────────────────────────
+  loading: 'Chargement...',
+
   // ── Header ──────────────────────────────────────────────────────────────────
   header: {
     admin: 'Admin',
     users: 'Utilisateurs',
     persons: 'Personnes',
-    catalogs: 'Catalogues',
-    changePassword: 'Changer le mot de passe',
+    catalogs: 'Catalogues',    populations: 'Populations',    changePassword: 'Changer le mot de passe',
     signOut: 'Se déconnecter',
     language: 'Langue',
   },
@@ -131,6 +133,65 @@ export const fr: TranslationKeys = {
     errorCreate: "Impossible de créer l'entrée. Elle existe peut-être déjà dans ce catalogue.",
     errorUpdate: "Impossible de mettre à jour l'entrée. Elle existe peut-être déjà dans ce catalogue.",
     errorToggle: "Impossible de mettre à jour le statut de l'entrée",
+  },
+
+  // ── Population List ───────────────────────────────────────────────────────
+  populationList: {
+    title: 'Populations',
+    newPopulation: 'Nouvelle population',
+    name: 'Nom',
+    status: 'Statut',
+    memberCount: 'Membres',
+    actions: 'Actions',
+    active: 'Actif',
+    closed: 'Fermé',
+    edit: 'Modifier',
+    viewMembers: 'Voir les membres',
+    noPopulations: 'Aucune population trouvée.',
+    errorLoad: 'Impossible de charger les populations',
+    errorCreate: 'Impossible de créer la population',
+    errorUpdate: 'Impossible de mettre à jour la population',
+  },
+
+  // ── Population Form ────────────────────────────────────────────────────────
+  populationForm: {
+    createPopulation: 'Créer une population',
+    editPopulation: 'Modifier la population',
+    nameRequired: 'Le nom de la population est requis',
+    nameUnique: 'Une population avec ce nom existe déjà',
+    statusRequired: 'Le statut est requis',
+    cancel: 'Annuler',
+    save: 'Enregistrer',
+  },
+
+  // ── Population Members ─────────────────────────────────────────────────────
+  populationMembers: {
+    title: 'Membres',
+    addMember: 'Ajouter un membre',
+    personName: 'Personne',
+    function: 'Fonction',
+    startDate: 'Date de début',
+    endDate: 'Date de fin',
+    actions: 'Actions',
+    edit: 'Modifier',
+    errorLoad: 'Impossible de charger les membres',
+    errorAdd: 'Impossible d\'ajouter le membre',
+    errorUpdate: 'Impossible de mettre à jour l\'adhésion',
+    personDisabled: 'Cette personne est désactivée et ne peut pas être ajoutée',
+    functionDisabled: 'La fonction sélectionnée n\'est plus active',
+    endDateBeforeStart: 'La date de fin doit être égale ou après la date de début',
+    noMembers: 'Aucun membre dans cette population.',
+  },
+
+  // ── Member Form ────────────────────────────────────────────────────────────
+  memberForm: {
+    addMember: 'Ajouter un membre',
+    editMember: 'Modifier l\'adhésion',
+    personRequired: 'La personne est requise',
+    functionRequired: 'La fonction est requise',
+    startDateRequired: 'La date de début est requise',
+    cancel: 'Annuler',
+    save: 'Enregistrer',
   },
 
   // ── Languages ───────────────────────────────────────────────────────────────

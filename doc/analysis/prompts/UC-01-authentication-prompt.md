@@ -18,6 +18,15 @@ This prompt is used to generate all the code and resources required to implement
 - BCrypt strength: 12.
 - Generic error messages to prevent user enumeration.
 
+### Existing Code Alignment (Mandatory)
+
+This UC also owns the role-alignment remediation for existing codebases. When implementing or regenerating UC-01 in an existing repository, include a synchronization pass so documentation and runtime role behavior remain consistent.
+
+- Source of truth: `doc/analysis/roles.md`
+- Target role model: `ADMIN`, `POPULATION_MANAGER`, `SECURITY_OFFICER`
+- Remove legacy `PROJECT_MANAGER` references from active code and documentation.
+- Align backend enum/security/frontend role selectors/demo seed payloads to the same role model.
+
 ---
 
 ## What to Generate
@@ -26,7 +35,7 @@ This prompt is used to generate all the code and resources required to implement
 
 #### Entity & Repository
 
-- `AppUser` JPA entity with fields: `id` (UUID), `username` (unique), `password` (hashed), `role` (enum: `ADMIN`, `PROJECT_MANAGER`), `enabled` (boolean).
+- `AppUser` JPA entity with fields: `id` (UUID), `username` (unique), `password` (hashed), `roles` (enum set in join table `app_user_roles`: `ADMIN`, `POPULATION_MANAGER`, `SECURITY_OFFICER`), `enabled` (boolean).
 - `AppUserRepository` extending `JpaRepository`.
 
 #### Security Configuration
@@ -44,15 +53,16 @@ This prompt is used to generate all the code and resources required to implement
 
 #### Auth Controller
 
-- `POST /api/auth/login`: accepts `{ username, password }`, returns `{ username, role }` on success, 401 on failure.
+- `POST /api/auth/login`: accepts `{ username, password }`, returns `{ username, roles }` on success, 401 on failure.
 - `POST /api/auth/logout`: invalidates the session, returns 200.
-- `GET /api/auth/me`: returns the currently authenticated user `{ username, role }`, 401 if not authenticated.
+- `GET /api/auth/me`: returns the currently authenticated user `{ username, roles }`, 401 if not authenticated.
 
 #### Flyway Migration
 
 - File: `V1__UC-01-authentication.sql`
 - SQL header comment: `-- Use case: UC-01`
-- Creates the `app_user` table with columns: `id`, `username`, `password`, `role`, `enabled`.
+- Creates the `app_user` table with columns: `id`, `username`, `password`, `enabled`.
+- Creates `app_user_roles (user_id, role)` as the baseline role storage.
 - Inserts one default ADMIN user (username: `admin`, password: BCrypt-hashed value of `admin123`).
 
 ---
@@ -145,3 +155,4 @@ frontend/
 - [ ] `GET /api/auth/me` returns 401 when not authenticated.
 - [ ] Flyway migration runs cleanly on a fresh database.
 - [ ] Default admin user can log in with `admin` / `admin123`.
+- [ ] No active source file keeps legacy `PROJECT_MANAGER` role naming (except migration comments/SQL literals required for transition).

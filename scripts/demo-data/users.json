@@ -2,25 +2,25 @@
   {
     "username": "alice.martin",
     "password": "Demo1234!",
-    "role": "ADMIN",
+    "roles": ["ADMIN"],
     "enabled": true
   },
   {
     "username": "bob.dupont",
     "password": "Demo1234!",
-    "role": "PROJECT_MANAGER",
+    "roles": ["POPULATION_MANAGER"],
     "enabled": true
   },
   {
     "username": "claire.leroy",
     "password": "Demo1234!",
-    "role": "PROJECT_MANAGER",
+    "roles": ["POPULATION_MANAGER"],
     "enabled": true
   },
   {
     "username": "david.simon",
     "password": "Demo1234!",
-    "role": "PROJECT_MANAGER",
+    "roles": ["SECURITY_OFFICER"],
     "enabled": false
   }
 ]

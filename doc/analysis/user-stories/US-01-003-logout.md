@@ -2,7 +2,7 @@
 
 ## User Story
 
-As an authenticated user (ADMIN or PROJECT_MANAGER),
+As an authenticated user (ADMIN, POPULATION_MANAGER, or SECURITY_OFFICER),
 I want to be able to log out of the application,
 So that my session is invalidated and my account is protected.
 
