@@ -1,0 +1,54 @@
+<div class="form-container">
+  <div class="page-header">
+    <button mat-icon-button (click)="cancel()" class="back-button" matTooltip="Back">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1 class="page-title">{{ getPageTitle() }}</h1>
+  </div>
+
+  @if (error) {
+    <div class="error-message">
+      {{ error }}
+    </div>
+  }
+
+  <mat-card class="form-card">
+    <form [formGroup]="populationForm" (ngSubmit)="submit()">
+      <div class="population-form">
+        <!-- Name Field -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>{{ 'populationForm.nameRequired' | translate }}</mat-label>
+          <input matInput formControlName="name" />
+          @if (populationForm.get('name')?.hasError('required') && populationForm.get('name')?.touched) {
+            <mat-error>{{ 'populationForm.nameRequired' | translate }}</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Status Field -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>{{ 'populationList.status' | translate }}</mat-label>
+          <mat-select formControlName="status">
+            @for (option of statusOptions; track option) {
+              <mat-option [value]="option">
+                {{ option === 'ACTIVE' ? ('populationList.active' | translate) : ('populationList.closed' | translate) }}
+              </mat-option>
+            }
+          </mat-select>
+          @if (populationForm.get('status')?.hasError('required') && populationForm.get('status')?.touched) {
+            <mat-error>{{ 'populationForm.statusRequired' | translate }}</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <!-- Form Actions -->
+      <div class="form-actions">
+        <button type="button" mat-stroked-button (click)="cancel()" [disabled]="submitting">
+          {{ 'populationForm.cancel' | translate }}
+        </button>
+        <button type="submit" mat-raised-button color="primary" [disabled]="populationForm.invalid || submitting">
+          {{ 'populationForm.save' | translate }}
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

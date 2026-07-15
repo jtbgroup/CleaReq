@@ -1,0 +1,73 @@
+@use 'styles/variables' as *;
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  margin-bottom: $spacing-lg;
+
+  .back-button {
+    color: $color-primary;
+
+    &:hover {
+      background-color: rgba(57, 73, 171, 0.08);
+    }
+  }
+}
+
+.page-title {
+  margin: 0;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $color-brand-deep;
+}
+
+.error-message {
+  background-color: #ffebee;
+  border-left: 4px solid $color-danger-text;
+  color: $color-danger-text;
+  padding: $spacing-md;
+  border-radius: 4px;
+}
+
+.form-card {
+  background: white;
+  border-radius: 8px;
+  border: 1px solid rgba(57, 73, 171, 0.12);
+  box-shadow: 0 2px 12px rgba(26, 35, 126, 0.06);
+  padding: $spacing-lg;
+}
+
+.population-form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  margin-bottom: $spacing-lg;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: $spacing-md;
+  margin-top: $spacing-xl;
+  padding-top: $spacing-lg;
+  border-top: 1px solid rgba(57, 73, 171, 0.1);
+}
+
+mat-form-field {
+  ::ng-deep {
+    .mdc-text-field {
+      width: 100%;
+    }
+  }
+}
